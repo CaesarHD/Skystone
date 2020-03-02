@@ -1,171 +1,200 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 
 
 @TeleOp(name = "TeleOp", group = "Debug")
-public class TeleOpMode extends LinearOpMode {
+public class TeleOpMode extends OpMode {
 
     private DcMotor FR;
     private DcMotor BR;
     private DcMotor BL;
     private DcMotor FL;
 
+    private Servo FD;
+
     public double speed = 0;
 
     @Override
-    public void runOpMode() throws InterruptedException {
+    public void init() {
 
         FR = hardwareMap.get(DcMotor.class, "FR");
         BR = hardwareMap.get(DcMotor.class, "BR");
         BL = hardwareMap.get(DcMotor.class, "BL");
         FL = hardwareMap.get(DcMotor.class, "FL");
+        FD = hardwareMap.get(Servo.class, "FD");
 
         FR.setDirection(DcMotor.Direction.FORWARD);
         BR.setDirection(DcMotor.Direction.FORWARD);
         BL.setDirection(DcMotor.Direction.FORWARD);
         FL.setDirection(DcMotor.Direction.FORWARD);
+        FD.setPosition(0);
+    }
 
-        waitForStart();
+    @Override
+    public void init_loop() {
+    }
 
-        while (opModeIsActive()) {
+    @Override
+    public void start() {
+    }
 
-            telemetry.addData("Status", "Initialized");
+    @Override
+    public void loop() {
 
-            if (gamepad1.y) speed = 0.25;
-            if (gamepad1.b) speed = 0.50;
-            if (gamepad1.a) speed = 0.75;
-            if (gamepad1.x) speed = 1.00;
+        telemetry.addData("Status", "Initialized");
 
-            telemetry.addData("Speed: ", speed);
-            telemetry.update();
+        if (gamepad1.y) speed = 0.25;
+        if (gamepad1.b) speed = 0.50;
+        if (gamepad1.a) speed = 0.75;
+        if (gamepad1.x) speed = 1.00;
 
-
-            while (gamepad1.left_stick_y < 0) {
-
-                //FORWARD
-
-                FR.setPower(speed);
-                BR.setPower(speed);
-                BL.setPower(-speed);
-                FL.setPower(-speed);
-            }
-
-            FR.setPower(0);
-            BR.setPower(0);
-            BL.setPower(0);
-            FL.setPower(0);
+        telemetry.addData("Speed: ", speed);
 
 
-            while (gamepad1.left_stick_y > 0) {
+        while (gamepad1.left_stick_y < 0) {
 
-                //REVERSE
+            //FORWARD
 
-                FR.setPower(-speed);
-                BR.setPower(-speed);
-                BL.setPower(speed);
-                FL.setPower(speed);
-            }
+            FR.setPower(speed);
+            BR.setPower(speed);
+            BL.setPower(-speed);
+            FL.setPower(-speed);
+        }
 
-            FR.setPower(0);
-            BR.setPower(0);
-            BL.setPower(0);
-            FL.setPower(0);
-
-
-            while (gamepad1.left_stick_x > 0) {
-
-                //STRAFE RIGHT
-
-                FR.setPower(speed);
-                BR.setPower(-speed);
-                BL.setPower(-speed);
-                FL.setPower(speed);
-
-            }
-
-            FR.setPower(0);
-            BR.setPower(0);
-            BL.setPower(0);
-            FL.setPower(0);
-
-            while (gamepad1.left_stick_x < 0) {
-
-                //STRAFE LEFT
-
-                FR.setPower(-speed);
-                BR.setPower(speed);
-                BL.setPower(speed);
-                FL.setPower(-speed);
-
-            }
-
-            FR.setPower(0);
-            BR.setPower(0);
-            BL.setPower(0);
-            FL.setPower(0);
+        FR.setPower(0);
+        BR.setPower(0);
+        BL.setPower(0);
+        FL.setPower(0);
 
 
-            while (gamepad1.right_stick_x < 0) {
+        while (gamepad1.left_stick_y > 0) {
 
-                //ROTATE RIGHT
+            //REVERSE
 
-                FR.setPower(-speed);
-                BR.setPower(-speed);
-                BL.setPower(-speed);
-                FL.setPower(-speed);
+            FR.setPower(-speed);
+            BR.setPower(-speed);
+            BL.setPower(speed);
+            FL.setPower(speed);
+        }
 
-            }
+        FR.setPower(0);
+        BR.setPower(0);
+        BL.setPower(0);
+        FL.setPower(0);
 
-            FR.setPower(0);
-            BR.setPower(0);
-            BL.setPower(0);
-            FL.setPower(0);
 
-            while (gamepad1.right_stick_x > 0) {
+        while (gamepad1.left_stick_x > 0) {
 
-                //ROTATE LEFT
+            //STRAFE RIGHT
 
-                FR.setPower(speed);
-                BR.setPower(speed);
-                BL.setPower(speed);
-                FL.setPower(speed);
-
-            }
-
-            FR.setPower(0);
-            BR.setPower(0);
-            BL.setPower(0);
-            FL.setPower(0);
-
-            while (gamepad1.right_stick_y < 0) {
-
-                //DIAGONAL RIGHT
-
-                FR.setPower(speed);
-                BL.setPower(speed);
-
-            }
-
-            FR.setPower(0);
-            BL.setPower(0);
-
-            while (gamepad1.right_stick_y > 0) {
-
-                //DIAGONAL LEFT
-
-                BR.setPower(speed);
-                FL.setPower(speed);
-
-            }
-
-            BR.setPower(0);
-            FL.setPower(0);
-
-            telemetry.update();
+            FR.setPower(speed);
+            BR.setPower(-speed);
+            BL.setPower(-speed);
+            FL.setPower(speed);
 
         }
+
+        FR.setPower(0);
+        BR.setPower(0);
+        BL.setPower(0);
+        FL.setPower(0);
+
+        while (gamepad1.left_stick_x < 0) {
+
+            //STRAFE LEFT
+
+            FR.setPower(-speed);
+            BR.setPower(speed);
+            BL.setPower(speed);
+            FL.setPower(-speed);
+
+        }
+
+        FR.setPower(0);
+        BR.setPower(0);
+        BL.setPower(0);
+        FL.setPower(0);
+
+
+        while (gamepad1.right_stick_x < 0) {
+
+            //ROTATE RIGHT
+
+            FR.setPower(-speed);
+            BR.setPower(-speed);
+            BL.setPower(-speed);
+            FL.setPower(-speed);
+
+        }
+
+        FR.setPower(0);
+        BR.setPower(0);
+        BL.setPower(0);
+        FL.setPower(0);
+
+        while (gamepad1.right_stick_x > 0) {
+
+            //ROTATE LEFT
+
+            FR.setPower(speed);
+            BR.setPower(speed);
+            BL.setPower(speed);
+            FL.setPower(speed);
+
+        }
+
+        FR.setPower(0);
+        BR.setPower(0);
+        BL.setPower(0);
+        FL.setPower(0);
+
+        while (gamepad1.right_stick_y < 0) {
+
+            //DIAGONAL RIGHT
+
+            FR.setPower(speed);
+            BL.setPower(speed);
+
+        }
+
+        FR.setPower(0);
+        BL.setPower(0);
+
+        while (gamepad1.right_stick_y > 0) {
+
+            //DIAGONAL LEFT
+
+            BR.setPower(speed);
+            FL.setPower(speed);
+
+        }
+
+        BR.setPower(0);
+        FL.setPower(0);
+
+        while (gamepad1.left_trigger == 1) {
+
+            FD.setPosition(1);
+
+            while (gamepad1.right_trigger == 0) {
+
+                FD.setPosition(0);
+
+                telemetry.update();
+
+            }
+        }
+
+    }
+
+    @Override
+    public void stop() {
+
+        FD.setPosition(0);
+
     }
 }
