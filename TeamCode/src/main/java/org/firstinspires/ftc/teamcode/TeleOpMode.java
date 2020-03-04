@@ -31,7 +31,6 @@ public class TeleOpMode extends OpMode {
         BR.setDirection(DcMotor.Direction.FORWARD);
         BL.setDirection(DcMotor.Direction.FORWARD);
         FL.setDirection(DcMotor.Direction.FORWARD);
-        FD.setPosition(0);
     }
 
     @Override
@@ -53,6 +52,7 @@ public class TeleOpMode extends OpMode {
         if (gamepad1.x) speed = 1.00;
 
         telemetry.addData("Speed: ", speed);
+        telemetry.update();
 
 
         while (gamepad1.left_stick_y < 0) {
@@ -180,13 +180,17 @@ public class TeleOpMode extends OpMode {
 
             FD.setPosition(1);
 
-            while (gamepad1.right_trigger == 0) {
+        }
 
-                FD.setPosition(0);
+        while (gamepad1.dpad_left || gamepad1.dpad_right) {
 
-                telemetry.update();
+            FD.setPosition(0);
+        }
 
-            }
+        while (gamepad1.right_trigger == 1) {
+
+            FD.setPosition(-1);
+
         }
 
     }
