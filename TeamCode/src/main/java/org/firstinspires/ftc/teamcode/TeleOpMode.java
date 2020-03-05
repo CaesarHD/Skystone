@@ -2,35 +2,22 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 
 @TeleOp(name = "TeleOp", group = "Debug")
 public class TeleOpMode extends OpMode {
 
-    private DcMotor FR;
-    private DcMotor BR;
-    private DcMotor BL;
-    private DcMotor FL;
-
-    private Servo FD;
+    function robot = new function();
+    public  ElapsedTime runtime = new ElapsedTime();
 
     public double speed = 0;
-
     @Override
     public void init() {
 
-        FR = hardwareMap.get(DcMotor.class, "FR");
-        BR = hardwareMap.get(DcMotor.class, "BR");
-        BL = hardwareMap.get(DcMotor.class, "BL");
-        FL = hardwareMap.get(DcMotor.class, "FL");
-        FD = hardwareMap.get(Servo.class, "FD");
+        robot.init(hardwareMap);
+        telemetry.addData("Status", "Initialized");
 
-        FR.setDirection(DcMotor.Direction.FORWARD);
-        BR.setDirection(DcMotor.Direction.FORWARD);
-        BL.setDirection(DcMotor.Direction.FORWARD);
-        FL.setDirection(DcMotor.Direction.FORWARD);
     }
 
     @Override
@@ -39,6 +26,7 @@ public class TeleOpMode extends OpMode {
 
     @Override
     public void start() {
+        runtime.reset();
     }
 
     @Override
@@ -59,137 +47,137 @@ public class TeleOpMode extends OpMode {
 
             //FORWARD
 
-            FR.setPower(speed);
-            BR.setPower(speed);
-            BL.setPower(-speed);
-            FL.setPower(-speed);
+            robot.FR.setPower(speed);
+            robot.BR.setPower(speed);
+            robot.BL.setPower(-speed);
+            robot.FL.setPower(-speed);
         }
 
-        FR.setPower(0);
-        BR.setPower(0);
-        BL.setPower(0);
-        FL.setPower(0);
+        robot.FR.setPower(0);
+        robot.BR.setPower(0);
+        robot.BL.setPower(0);
+        robot.FL.setPower(0);
 
 
         while (gamepad1.left_stick_y > 0) {
 
             //REVERSE
 
-            FR.setPower(-speed);
-            BR.setPower(-speed);
-            BL.setPower(speed);
-            FL.setPower(speed);
+            robot.FR.setPower(-speed);
+            robot.BR.setPower(-speed);
+            robot.BL.setPower(speed);
+            robot.FL.setPower(speed);
         }
 
-        FR.setPower(0);
-        BR.setPower(0);
-        BL.setPower(0);
-        FL.setPower(0);
+        robot.FR.setPower(0);
+        robot.BR.setPower(0);
+        robot.BL.setPower(0);
+        robot.FL.setPower(0);
 
 
         while (gamepad1.left_stick_x > 0) {
 
             //STRAFE RIGHT
 
-            FR.setPower(speed);
-            BR.setPower(-speed);
-            BL.setPower(-speed);
-            FL.setPower(speed);
+            robot.FR.setPower(speed);
+            robot.BR.setPower(-speed);
+            robot.BL.setPower(-speed);
+            robot.FL.setPower(speed);
 
         }
 
-        FR.setPower(0);
-        BR.setPower(0);
-        BL.setPower(0);
-        FL.setPower(0);
+        robot.FR.setPower(0);
+        robot.BR.setPower(0);
+        robot.BL.setPower(0);
+        robot.FL.setPower(0);
 
         while (gamepad1.left_stick_x < 0) {
 
             //STRAFE LEFT
 
-            FR.setPower(-speed);
-            BR.setPower(speed);
-            BL.setPower(speed);
-            FL.setPower(-speed);
+            robot.FR.setPower(-speed);
+            robot.BR.setPower(speed);
+            robot.BL.setPower(speed);
+            robot.FL.setPower(-speed);
 
         }
 
-        FR.setPower(0);
-        BR.setPower(0);
-        BL.setPower(0);
-        FL.setPower(0);
+        robot.FR.setPower(0);
+        robot.BR.setPower(0);
+        robot.BL.setPower(0);
+        robot.FL.setPower(0);
 
 
         while (gamepad1.right_stick_x < 0) {
 
             //ROTATE RIGHT
 
-            FR.setPower(-speed);
-            BR.setPower(-speed);
-            BL.setPower(-speed);
-            FL.setPower(-speed);
+            robot.FR.setPower(-speed);
+            robot.BR.setPower(-speed);
+            robot.BL.setPower(-speed);
+            robot.FL.setPower(-speed);
 
         }
 
-        FR.setPower(0);
-        BR.setPower(0);
-        BL.setPower(0);
-        FL.setPower(0);
+        robot.FR.setPower(0);
+        robot.BR.setPower(0);
+        robot.BL.setPower(0);
+        robot.FL.setPower(0);
 
         while (gamepad1.right_stick_x > 0) {
 
             //ROTATE LEFT
 
-            FR.setPower(speed);
-            BR.setPower(speed);
-            BL.setPower(speed);
-            FL.setPower(speed);
+            robot.FR.setPower(speed);
+            robot.BR.setPower(speed);
+            robot.BL.setPower(speed);
+            robot.FL.setPower(speed);
 
         }
 
-        FR.setPower(0);
-        BR.setPower(0);
-        BL.setPower(0);
-        FL.setPower(0);
+        robot.FR.setPower(0);
+        robot.BR.setPower(0);
+        robot.BL.setPower(0);
+        robot.FL.setPower(0);
 
         while (gamepad1.right_stick_y < 0) {
 
             //DIAGONAL RIGHT
 
-            FR.setPower(speed);
-            BL.setPower(speed);
+            robot.FR.setPower(speed);
+            robot.BL.setPower(speed);
 
         }
 
-        FR.setPower(0);
-        BL.setPower(0);
+        robot.FR.setPower(0);
+        robot.BL.setPower(0);
 
         while (gamepad1.right_stick_y > 0) {
 
             //DIAGONAL LEFT
 
-            BR.setPower(speed);
-            FL.setPower(speed);
+            robot.BR.setPower(speed);
+            robot.FL.setPower(speed);
 
         }
 
-        BR.setPower(0);
-        FL.setPower(0);
+        robot.BR.setPower(0);
+        robot.FL.setPower(0);
 
         while (gamepad1.left_trigger == 1) {
 
-            FD.setPosition(1);
+            robot.FD.setPosition(1);
 
         }
 
         while (gamepad1.dpad_left || gamepad1.dpad_right) {
 
-            FD.setPosition(0);
+            robot.FD.setPosition(0);
         }
 
         while (gamepad1.right_trigger == 1) {
 
-            FD.setPosition(-1);
+            robot.FD.setPosition(0);
 
         }
 
@@ -197,8 +185,5 @@ public class TeleOpMode extends OpMode {
 
     @Override
     public void stop() {
-
-        FD.setPosition(0);
-
     }
 }
