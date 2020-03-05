@@ -12,6 +12,9 @@ public class Function {
     public DcMotor BL;
     public DcMotor FL;
 
+    public DcMotor LL;
+    public DcMotor LR;
+
     public Servo FD;
 
     HardwareMap hwMap = null;
@@ -33,6 +36,9 @@ public class Function {
         BL = hwMap.get(DcMotor.class, "BL");
         FL = hwMap.get(DcMotor.class, "FL");
 
+        LL = hwMap.get(DcMotor.class, "LL");
+        LR = hwMap.get(DcMotor.class, "LR");
+
         FD = hwMap.get(Servo.class, "FD");
 
         FD.setPosition(0);
@@ -41,6 +47,9 @@ public class Function {
         BR.setDirection(DcMotor.Direction.FORWARD);
         BL.setDirection(DcMotor.Direction.FORWARD);
         FL.setDirection(DcMotor.Direction.FORWARD);
+
+        LL.setDirection(DcMotor.Direction.FORWARD);
+        LR.setDirection(DcMotor.Direction.FORWARD);
 
         FR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         BR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);

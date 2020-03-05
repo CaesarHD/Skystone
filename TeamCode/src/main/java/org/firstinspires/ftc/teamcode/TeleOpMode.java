@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
@@ -41,6 +42,19 @@ public class TeleOpMode extends OpMode {
 
         telemetry.addData("Speed: ", speed);
         telemetry.update();
+
+        if (gamepad2.left_stick_y < 0) {
+
+            robot.LL.setPower(1);
+            robot.LL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        }
+
+        if (gamepad2.left_stick_y > 0) {
+
+            robot.LR.setPower(-1);
+            robot.LR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        }
 
 
         while (gamepad1.left_stick_y < 0) {
