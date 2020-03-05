@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @TeleOp(name = "TeleOp", group = "Debug")
 public class TeleOpMode extends OpMode {
 
-    function robot = new function();
+    Function robot = new Function();
     public  ElapsedTime runtime = new ElapsedTime();
 
     public double speed = 0;
