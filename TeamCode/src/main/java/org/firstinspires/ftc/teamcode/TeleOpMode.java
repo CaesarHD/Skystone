@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class TeleOpMode extends OpMode {
 
     public Lift lift = new Lift();
-    public Drivetrain drivetrain = new Drivetrain();
+//    public Drivetrain drivetrain = new Drivetrain();
     public ElapsedTime runtime = new ElapsedTime();
     public ServoFoundation servoFoundation = new ServoFoundation();
 
@@ -19,6 +19,8 @@ public class TeleOpMode extends OpMode {
     @Override
     public void init() {
 
+        servoFoundation.initServo(hardwareMap);
+        lift.initLift(hardwareMap);
         telemetry.addData("Status", "Initialized");
 
     }
@@ -48,65 +50,71 @@ public class TeleOpMode extends OpMode {
 
         //LIFT TELEOP
 
-        while (gamepad2.left_stick_y > 0) {
+        if (gamepad2.left_stick_y > 0) {
             lift.up();
         }
 
-        while (gamepad2.left_stick_y < 0) {
+        if (gamepad2.left_stick_y < 0) {
             lift.down();
         }
 
-        while (gamepad2.left_stick_y == 0) {
+        else {
             lift.pause();
         }
 
-        while (gamepad1.left_stick_y < 0) {
-            drivetrain.moveForward();
-        }
-        drivetrain.stopMovement();
 
 
 
-        // DRIVETRAIN TELEOP
-
-        while (gamepad1.left_stick_y > 0) {
-            drivetrain.moveReverse();
-        }
-        drivetrain.stopMovement();
-
-
-        while (gamepad1.left_stick_x > 0) {
-            drivetrain.strafeRight();
-
-        }
-        drivetrain.stopMovement();
-
-        while (gamepad1.left_stick_x < 0) {
-            drivetrain.strafeLeft();
-
-        }
-        drivetrain.stopMovement();
-
-
-        while (gamepad1.right_stick_x < 0) {
-            drivetrain.rotateRight();
-        }
-        drivetrain.stopMovement();
-
-        while (gamepad1.right_stick_x > 0) {
-            drivetrain.strafeLeft();
-        }
-        drivetrain.stopMovement();
-
-        while (gamepad1.right_stick_y < 0) {
-            drivetrain.diagonalRight();
-        }
-        drivetrain.stopMovement();
-
-        while (gamepad1.right_stick_y > 0) {
-            drivetrain.diagonalLeft();
-        }
-        drivetrain.stopMovement();
+//        // DRIVETRAIN TELEOP
+//
+//        while (gamepad2.left_stick_y == 0) {
+//            lift.pause();
+//        }
+//
+//        while (gamepad1.left_stick_y < 0) {
+//            drivetrain.moveForward();
+//        }
+//        drivetrain.stopMovement();
+//
+//
+//        while (gamepad1.left_stick_y > 0) {
+//            drivetrain.moveReverse();
+//        }
+//        drivetrain.stopMovement();
+//
+//
+//        while (gamepad1.left_stick_x > 0) {
+//            drivetrain.strafeRight();
+//
+//        }
+//        drivetrain.stopMovement();
+//
+//        while (gamepad1.left_stick_x < 0) {
+//            drivetrain.strafeLeft();
+//
+//        }
+//        drivetrain.stopMovement();
+//
+//
+//        while (gamepad1.right_stick_x < 0) {
+//            drivetrain.rotateRight();
+//        }
+//        drivetrain.stopMovement();
+//
+//        while (gamepad1.right_stick_x > 0) {
+//            drivetrain.strafeLeft();
+//        }
+//        drivetrain.stopMovement();
+//
+//        while (gamepad1.right_stick_y < 0) {
+//            drivetrain.diagonalRight();
+//        }
+//        drivetrain.stopMovement();
+//
+//        while (gamepad1.right_stick_y > 0) {
+//            drivetrain.diagonalLeft();
+//        }
+//        drivetrain.stopMovement();
 
 
         //SERVOFOUNDATION

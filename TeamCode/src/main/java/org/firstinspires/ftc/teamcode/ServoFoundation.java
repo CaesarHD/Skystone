@@ -2,28 +2,32 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
-public class ServoFoundation extends LinearOpMode {
+public class ServoFoundation {
 
-    public Servo foundationServo;
+    public Servo foundationServoLeft;
+    public Servo foundationServoRight;
 
     public void down() {
 
-        foundationServo.setPosition(1);
+        foundationServoLeft.setPosition(1);
+        foundationServoRight.setPosition(0);
     }
 
     public void up() {
 
-        foundationServo.setPosition(0);
+        foundationServoLeft.setPosition(0);
+        foundationServoRight.setPosition(1);
     }
 
-    @Override
-    public void runOpMode() {
+    public void initServo(HardwareMap hardwareMap) {
 
-        foundationServo = hardwareMap.servo.get("foundationServo");
+        foundationServoRight = hardwareMap.get(Servo.class, "foundationServoRight");
+        foundationServoLeft = hardwareMap.get(Servo.class, "foundationServoLeft");
 
-
-    }
 
     }
+
+}
