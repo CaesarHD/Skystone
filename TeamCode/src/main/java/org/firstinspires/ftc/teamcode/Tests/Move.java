@@ -2,11 +2,10 @@ package org.firstinspires.ftc.teamcode.Tests;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.DriveAutodrive.Autodrivetrain;
-import org.firstinspires.ftc.teamcode.DriveAutodrive.Drivetrain;
 
 import static android.os.SystemClock.sleep;
 
@@ -21,7 +20,7 @@ public class Move extends OpMode{
     public void init(){
 
         telemetry.addData("Status", "Initialized");
-        autodrivetrain.hardwareMap();
+        autodrivetrain.hardwareMap(hardwareMap);
     }
 
     @Override
@@ -39,8 +38,11 @@ public class Move extends OpMode{
     public void loop(){
 
        autodrivetrain.moveForward(10,0.75);
-
-        sleep(1000);
+       autodrivetrain.moveReverse(10,0.75);
+       autodrivetrain.strafeLeft(10,0.75);
+       autodrivetrain.strafeRight(10,0.75);
+       autodrivetrain.rotateLeft(54,0.75);
+       autodrivetrain.rotateRight(54,0.75);
 
         autodrivetrain.autodrivetrainStop();
 

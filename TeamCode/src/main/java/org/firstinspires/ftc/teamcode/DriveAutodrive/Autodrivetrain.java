@@ -2,8 +2,10 @@ package org.firstinspires.ftc.teamcode.DriveAutodrive;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareDevice;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
-public class Autodrivetrain extends OpMode {
+public class Autodrivetrain  {
 
     public DcMotor rightFront;
     public DcMotor rightBack;
@@ -22,7 +24,7 @@ public class Autodrivetrain extends OpMode {
 
     int targetDistance;
 
-    public void hardwareMap() {
+    public void hardwareMap(HardwareMap hardwareMap) {
 
         rightFront = hardwareMap.get(DcMotor.class, "rightFront");
         rightBack = hardwareMap.get(DcMotor.class, "rightBack");
@@ -231,23 +233,4 @@ public class Autodrivetrain extends OpMode {
         liftMotor2.setPower(0.0);
     }
 
-
-    @Override
-    public void init() {
-
-    }
-
-    @Override
-    public void init_loop(){
-
-    }
-
-    @Override
-    public void start(){
-
-    }
-
-    public void loop(){
-
-    }
 }
