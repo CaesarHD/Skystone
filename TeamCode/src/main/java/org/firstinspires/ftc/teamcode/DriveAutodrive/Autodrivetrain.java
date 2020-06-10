@@ -17,12 +17,18 @@ public class Autodrivetrain  {
 
     public final double diameter = 10.0;
     public final double wheelCircumference = diameter * Math.PI;
-    public final double ticksPerRotation = 1440.0;
-    public final double gearRatio = 3.0 / 1.0;
+    public final double ticksPerRotation = 560.0;
+    public final double gearRatio = 20.0 / 1.0;
     public final double scaleFactor = 1.0;
     public final double ticksPerCentimeter = (ticksPerRotation * scaleFactor) / (gearRatio * wheelCircumference);
 
     int targetDistance;
+
+    public void sleep(int milis){
+        try {
+            Thread.sleep(milis);
+        } catch (Exception e){}
+    }
 
     public void hardwareMap(HardwareMap hardwareMap) {
 

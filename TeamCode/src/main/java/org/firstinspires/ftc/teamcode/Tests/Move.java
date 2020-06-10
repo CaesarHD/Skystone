@@ -7,8 +7,6 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.DriveAutodrive.Autodrivetrain;
 
-import static android.os.SystemClock.sleep;
-
 @Autonomous(name="Move", group="Test")
 
 public class Move extends OpMode{
